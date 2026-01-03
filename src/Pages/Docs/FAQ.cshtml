@@ -1,0 +1,258 @@
+@page
+@model MonolithFirewall.Pages.Docs.FAQModel
+@{
+    ViewData["Title"] = "FAQ";
+}
+
+<section class="section" style="padding-top: 100px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="doc-sidebar">
+                    <h5 style="color: var(--primary-color); margin-bottom: 1.5rem;">
+                        <i class="fas fa-list"></i> Documentation
+                    </h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" asp-page="/Docs/Index">
+                            <i class="fas fa-home"></i> Overview
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Installation">
+                            <i class="fas fa-download"></i> Installation
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Configuration">
+                            <i class="fas fa-cog"></i> Configuration
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Firewall">
+                            <i class="fas fa-shield-alt"></i> Firewall Rules
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/VPN">
+                            <i class="fas fa-lock"></i> VPN Setup
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Monitoring">
+                            <i class="fas fa-chart-line"></i> Monitoring
+                        </a>
+                        <a class="nav-link active" asp-page="/Docs/FAQ">
+                            <i class="fas fa-question-circle"></i> FAQ
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="doc-content">
+                    <h1><i class="fas fa-question-circle"></i> Frequently Asked Questions</h1>
+
+                    <h2 id="general">General Questions</h2>
+
+                    <h3>What is Monolith Firewall?</h3>
+                    <p>
+                        Monolith Firewall is an open-source firewall distribution built on .NET 10 and Debian 13.
+                        It provides enterprise-grade network security features with an easy-to-use interface, suitable
+                        for home users, small businesses, and enterprises.
+                    </p>
+
+                    <h3>Is Monolith Firewall really free?</h3>
+                    <p>
+                        Yes! Monolith Firewall is 100% free and open-source under the MIT License. There are no
+                        premium versions, hidden fees, or feature limitations. The entire source code is available
+                        on GitHub for anyone to audit, modify, and contribute to.
+                    </p>
+
+                    <h3>Why is it built on .NET 10?</h3>
+                    <p>
+                        .NET 10 provides excellent performance, modern APIs, cross-platform compatibility, and
+                        strong security features. It allows us to build a robust, maintainable firewall solution
+                        while leveraging the extensive .NET ecosystem.
+                    </p>
+
+                    <h3>Can I use this in production?</h3>
+                    <p>
+                        Yes! Monolith Firewall is designed for production use. However, as with any security software,
+                        we recommend thorough testing in your environment before deployment and staying current with updates.
+                    </p>
+
+                    <h2 id="installation">Installation Questions</h2>
+
+                    <h3>What hardware do I need?</h3>
+                    <p>
+                        Minimum requirements are modest: a 64-bit processor (x86_64 or ARM64), 1 GB RAM, 8 GB storage,
+                        and at least 2 network interfaces. For better performance, we recommend 2+ GB RAM and an SSD.
+                        See the <a asp-page="/Docs/Installation" style="color: var(--primary-color);">Installation Guide</a> for details.
+                    </p>
+
+                    <h3>Can I install this on a virtual machine?</h3>
+                    <p>
+                        Absolutely! Monolith Firewall works great on VirtualBox, VMware, Hyper-V, KVM, and other
+                        virtualization platforms. Make sure to configure at least two network adapters (one for WAN,
+                        one for LAN) in your VM settings.
+                    </p>
+
+                    <h3>Can I install on existing Debian installation?</h3>
+                    <p>
+                        While technically possible, we recommend using the official ISO for the best experience.
+                        The ISO includes all necessary components pre-configured and optimized for firewall use.
+                    </p>
+
+                    <h3>How do I update Monolith Firewall?</h3>
+                    <p>
+                        Updates can be installed through the web interface (<strong>System &gt; Updates</strong>) or
+                        via CLI with <code>monolith-cli system update install</code>. We recommend enabling automatic
+                        security updates.
+                    </p>
+
+                    <h2 id="configuration">Configuration Questions</h2>
+
+                    <h3>I can't access the web interface, what should I do?</h3>
+                    <p>Common troubleshooting steps:</p>
+                    <ul>
+                        <li>Ensure you're connecting from the LAN side, not WAN</li>
+                        <li>Verify the firewall's LAN IP address using the console</li>
+                        <li>Check if your browser accepts the self-signed SSL certificate</li>
+                        <li>Try accessing via HTTP first: <code>http://&lt;firewall-ip&gt;:8080</code></li>
+                        <li>Verify network connectivity with <code>ping &lt;firewall-ip&gt;</code></li>
+                    </ul>
+
+                    <h3>How do I reset the admin password?</h3>
+                    <p>From the console or SSH:</p>
+                    <div class="code-block">
+                        <code># Reset admin password<br>
+monolith-cli user reset-password admin<br>
+<br>
+# Follow the prompts to set a new password</code>
+                    </div>
+
+                    <h3>Can I manage multiple LAN networks?</h3>
+                    <p>
+                        Yes! Monolith Firewall supports VLANs and multiple LAN interfaces. You can create separate
+                        networks for guest WiFi, IoT devices, servers, etc., with different security policies for each.
+                    </p>
+
+                    <h3>How do I configure port forwarding?</h3>
+                    <p>
+                        Navigate to <strong>Firewall &gt; NAT &gt; Port Forward</strong> and add a new rule.
+                        Specify the external port, internal IP, and internal port. See the
+                        <a asp-page="/Docs/Configuration" style="color: var(--primary-color);">Configuration Guide</a> for details.
+                    </p>
+
+                    <h2 id="performance">Performance Questions</h2>
+
+                    <h3>What throughput can I expect?</h3>
+                    <p>
+                        Performance varies by hardware, but on modest hardware (dual-core CPU, 2 GB RAM), you can
+                        typically achieve 500+ Mbps throughput. With dedicated hardware and proper optimization,
+                        multi-gigabit throughput is achievable.
+                    </p>
+
+                    <h3>Does it support hardware offloading?</h3>
+                    <p>
+                        Yes! Monolith Firewall supports hardware offloading features like:
+                    </p>
+                    <ul>
+                        <li>TCP/UDP checksum offloading</li>
+                        <li>Segmentation offloading (TSO/GSO)</li>
+                        <li>Receive-side scaling (RSS)</li>
+                    </ul>
+
+                    <h3>How many concurrent connections can it handle?</h3>
+                    <p>
+                        This depends on available RAM. With 2 GB RAM, you can typically handle 50,000+ concurrent
+                        connections. With 4+ GB RAM, hundreds of thousands of connections are possible.
+                    </p>
+
+                    <h2 id="security">Security Questions</h2>
+
+                    <h3>How secure is Monolith Firewall?</h3>
+                    <p>
+                        Security is our top priority. Monolith Firewall is built on Debian 13, a security-focused
+                        Linux distribution, and follows security best practices. The open-source nature means the
+                        code can be audited by anyone. We regularly release security updates.
+                    </p>
+
+                    <h3>Does it include intrusion detection?</h3>
+                    <p>
+                        Yes! Monolith Firewall includes built-in IDS (Intrusion Detection System) capabilities
+                        for real-time threat monitoring and blocking.
+                    </p>
+
+                    <h3>Can I use it with my existing VPN?</h3>
+                    <p>
+                        Yes! Monolith Firewall supports both OpenVPN and WireGuard. You can configure it as a VPN
+                        server, client, or both. See the <a asp-page="/Docs/VPN" style="color: var(--primary-color);">VPN Setup Guide</a>.
+                    </p>
+
+                    <h3>Does it support IPv6?</h3>
+                    <p>
+                        Yes! Full IPv6 support is included, with dual-stack IPv4/IPv6 operation.
+                    </p>
+
+                    <h2 id="troubleshooting">Troubleshooting</h2>
+
+                    <h3>My internet connection isn't working</h3>
+                    <p>Check these common issues:</p>
+                    <ul>
+                        <li>Verify WAN interface has a valid IP address</li>
+                        <li>Check DNS settings (try 8.8.8.8 or 1.1.1.1)</li>
+                        <li>Verify NAT is configured and enabled</li>
+                        <li>Check firewall rules aren't blocking outbound traffic</li>
+                        <li>Test from the firewall itself: <code>ping 8.8.8.8</code></li>
+                    </ul>
+
+                    <h3>Devices can't get DHCP addresses</h3>
+                    <p>Troubleshooting steps:</p>
+                    <ul>
+                        <li>Verify DHCP server is enabled on the LAN interface</li>
+                        <li>Check DHCP range doesn't conflict with static IPs</li>
+                        <li>Ensure firewall rules allow DHCP traffic (UDP ports 67-68)</li>
+                        <li>Check DHCP server logs: <code>monolith-cli logs dhcp</code></li>
+                    </ul>
+
+                    <h3>High CPU usage</h3>
+                    <p>Potential causes and solutions:</p>
+                    <ul>
+                        <li>Enable hardware offloading if available</li>
+                        <li>Reduce logging verbosity</li>
+                        <li>Check for bandwidth-intensive applications</li>
+                        <li>Review firewall rules for inefficiencies</li>
+                        <li>Consider upgrading hardware for higher throughput</li>
+                    </ul>
+
+                    <h2 id="support">Support Questions</h2>
+
+                    <h3>Where can I get help?</h3>
+                    <p>Several options are available:</p>
+                    <ul>
+                        <li><strong>Documentation:</strong> Comprehensive guides on this website</li>
+                        <li><strong>GitHub Issues:</strong> Report bugs and request features</li>
+                        <li><strong>Community Discord:</strong> Chat with other users and developers</li>
+                        <li><strong>GitHub Discussions:</strong> Ask questions and share experiences</li>
+                    </ul>
+
+                    <h3>How can I contribute?</h3>
+                    <p>
+                        We welcome contributions! You can help by:
+                    </p>
+                    <ul>
+                        <li>Reporting bugs and suggesting features on GitHub</li>
+                        <li>Submitting pull requests with improvements</li>
+                        <li>Improving documentation</li>
+                        <li>Helping other users in the community</li>
+                        <li>Spreading the word about Monolith Firewall</li>
+                    </ul>
+
+                    <h3>Is commercial support available?</h3>
+                    <p>
+                        Currently, Monolith Firewall is community-supported. Commercial support options may
+                        be available in the future. Check our GitHub page for updates.
+                    </p>
+
+                    <div class="alert alert-info mt-5">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Question not answered?</strong> Check our
+                        <a href="https://github.com" target="_blank" style="color: var(--primary-color); font-weight: bold;">GitHub Discussions</a>
+                        or open an issue on
+                        <a href="https://github.com" target="_blank" style="color: var(--primary-color); font-weight: bold;">GitHub</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

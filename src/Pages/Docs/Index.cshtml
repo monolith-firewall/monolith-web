@@ -1,0 +1,189 @@
+@page
+@model MonolithFirewall.Pages.Docs.IndexModel
+@{
+    ViewData["Title"] = "Documentation";
+}
+
+<section class="hero" style="min-height: 40vh;">
+    <div class="container">
+        <div class="hero-content">
+            <i class="fas fa-book hero-shield"></i>
+            <h1>Documentation</h1>
+            <p class="lead">Everything you need to know about Monolith Firewall</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="doc-sidebar">
+                    <h5 style="color: var(--primary-color); margin-bottom: 1.5rem;">
+                        <i class="fas fa-list"></i> Documentation
+                    </h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link active" asp-page="/Docs/Index">
+                            <i class="fas fa-home"></i> Overview
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Installation">
+                            <i class="fas fa-download"></i> Installation
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Configuration">
+                            <i class="fas fa-cog"></i> Configuration
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Firewall">
+                            <i class="fas fa-shield-alt"></i> Firewall Rules
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/VPN">
+                            <i class="fas fa-lock"></i> VPN Setup
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Monitoring">
+                            <i class="fas fa-chart-line"></i> Monitoring
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/FAQ">
+                            <i class="fas fa-question-circle"></i> FAQ
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="doc-content">
+                    <h1><i class="fas fa-book"></i> Welcome to Monolith Firewall Documentation</h1>
+                    <p>
+                        Monolith Firewall is a next-generation, open-source firewall distribution built on .NET 10 and Debian 13.
+                        This documentation will guide you through installation, configuration, and advanced usage.
+                    </p>
+
+                    <div class="alert alert-info mt-4">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Getting Started:</strong> New to Monolith Firewall? Start with the
+                        <a asp-page="/Docs/Installation" style="color: var(--primary-color); font-weight: bold;">Installation Guide</a>.
+                    </div>
+
+                    <h2 id="overview">Overview</h2>
+                    <p>
+                        Monolith Firewall combines the stability and security of Debian 13 with the modern performance of .NET 10
+                        to provide a powerful, flexible firewall solution suitable for home users, small businesses, and enterprises.
+                    </p>
+
+                    <h3>Key Capabilities</h3>
+                    <ul>
+                        <li><strong>Stateful Packet Inspection:</strong> Advanced packet filtering with connection tracking</li>
+                        <li><strong>Network Address Translation:</strong> Full NAT support including port forwarding</li>
+                        <li><strong>VPN Services:</strong> Built-in OpenVPN and WireGuard support</li>
+                        <li><strong>Intrusion Detection:</strong> Real-time threat detection and prevention</li>
+                        <li><strong>Traffic Shaping:</strong> QoS and bandwidth management</li>
+                        <li><strong>High Availability:</strong> Clustering and failover support</li>
+                    </ul>
+
+                    <h2 id="quick-start">Quick Start</h2>
+                    <p>Get up and running with Monolith Firewall in three simple steps:</p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-4 mb-3">
+                            <div class="feature-card">
+                                <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;">1</div>
+                                <h5>Download</h5>
+                                <p style="font-size: 0.9rem;">Get the latest ISO for your architecture</p>
+                                <a asp-page="/Download" class="btn btn-outline-primary btn-sm mt-2">Download</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="feature-card">
+                                <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;">2</div>
+                                <h5>Install</h5>
+                                <p style="font-size: 0.9rem;">Follow the guided installation process</p>
+                                <a asp-page="/Docs/Installation" class="btn btn-outline-primary btn-sm mt-2">Guide</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="feature-card">
+                                <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;">3</div>
+                                <h5>Configure</h5>
+                                <p style="font-size: 0.9rem;">Set up your firewall rules and policies</p>
+                                <a asp-page="/Docs/Configuration" class="btn btn-outline-primary btn-sm mt-2">Learn</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 id="system-architecture">System Architecture</h2>
+                    <p>Monolith Firewall is built on a modern, modular architecture:</p>
+
+                    <div class="code-block">
+                        <code>
+┌─────────────────────────────────────────┐<br>
+│     Web Interface (.NET 10 / Blazor)    │<br>
+├─────────────────────────────────────────┤<br>
+│      REST API (.NET 10 / ASP.NET)       │<br>
+├─────────────────────────────────────────┤<br>
+│    Core Engine (.NET 10 / C#)           │<br>
+├─────────────────────────────────────────┤<br>
+│    Netfilter / iptables / nftables      │<br>
+├─────────────────────────────────────────┤<br>
+│         Linux Kernel (Debian 13)        │<br>
+└─────────────────────────────────────────┘
+                        </code>
+                    </div>
+
+                    <h2 id="features">Feature Overview</h2>
+
+                    <h3>Network Security</h3>
+                    <ul>
+                        <li>Layer 3/4/7 filtering and inspection</li>
+                        <li>Geo-blocking and IP reputation filtering</li>
+                        <li>Application-level gateway (ALG) support</li>
+                        <li>DDoS protection and rate limiting</li>
+                    </ul>
+
+                    <h3>Management</h3>
+                    <ul>
+                        <li>Modern web-based GUI</li>
+                        <li>Comprehensive CLI tools</li>
+                        <li>RESTful API for automation</li>
+                        <li>Configuration backup and restore</li>
+                    </ul>
+
+                    <h3>Monitoring & Logging</h3>
+                    <ul>
+                        <li>Real-time traffic monitoring</li>
+                        <li>Detailed connection logs</li>
+                        <li>Performance metrics and graphs</li>
+                        <li>Email and webhook alerts</li>
+                    </ul>
+
+                    <h2 id="support">Getting Help</h2>
+                    <p>Need assistance? Here are your options:</p>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="feature-card">
+                                <i class="fab fa-github" style="font-size: 2rem; color: var(--primary-color);"></i>
+                                <h5 class="mt-3">GitHub Issues</h5>
+                                <p style="font-size: 0.9rem;">Report bugs and request features</p>
+                                <a href="https://github.com" target="_blank" class="btn btn-outline-primary btn-sm">
+                                    Open Issue
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card">
+                                <i class="fab fa-discord" style="font-size: 2rem; color: var(--primary-color);"></i>
+                                <h5 class="mt-3">Community Discord</h5>
+                                <p style="font-size: 0.9rem;">Chat with other users and developers</p>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    Join Discord
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning mt-4">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Security Notice:</strong> Always keep your Monolith Firewall installation up to date with the latest security patches.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

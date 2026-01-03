@@ -1,0 +1,223 @@
+@page
+@model MonolithFirewall.Pages.Docs.ConfigurationModel
+@{
+    ViewData["Title"] = "Configuration Guide";
+}
+
+<section class="section" style="padding-top: 100px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="doc-sidebar">
+                    <h5 style="color: var(--primary-color); margin-bottom: 1.5rem;">
+                        <i class="fas fa-list"></i> Documentation
+                    </h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" asp-page="/Docs/Index">
+                            <i class="fas fa-home"></i> Overview
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Installation">
+                            <i class="fas fa-download"></i> Installation
+                        </a>
+                        <a class="nav-link active" asp-page="/Docs/Configuration">
+                            <i class="fas fa-cog"></i> Configuration
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Firewall">
+                            <i class="fas fa-shield-alt"></i> Firewall Rules
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/VPN">
+                            <i class="fas fa-lock"></i> VPN Setup
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/Monitoring">
+                            <i class="fas fa-chart-line"></i> Monitoring
+                        </a>
+                        <a class="nav-link" asp-page="/Docs/FAQ">
+                            <i class="fas fa-question-circle"></i> FAQ
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="doc-content">
+                    <h1><i class="fas fa-cog"></i> Configuration Guide</h1>
+                    <p>
+                        Learn how to configure Monolith Firewall for your network environment.
+                    </p>
+
+                    <h2 id="web-interface">Accessing the Web Interface</h2>
+                    <p>The web interface is the primary method for configuring Monolith Firewall:</p>
+                    <div class="code-block">
+                        <code>https://&lt;firewall-ip&gt;:8443</code>
+                    </div>
+                    <p class="mt-3">Default credentials:</p>
+                    <ul>
+                        <li><strong>Username:</strong> admin</li>
+                        <li><strong>Password:</strong> (set during installation)</li>
+                    </ul>
+
+                    <div class="alert alert-warning mt-3">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Security Note:</strong> Change the default password immediately after first login.
+                    </div>
+
+                    <h2 id="network-interfaces">Network Interfaces</h2>
+                    <p>Configure your network interfaces under <strong>Network &gt; Interfaces</strong>:</p>
+
+                    <h3>WAN Interface</h3>
+                    <p>The WAN (Wide Area Network) interface connects to the Internet:</p>
+                    <div class="code-block">
+                        <code># Example WAN configuration<br>
+Interface: eth0<br>
+Type: DHCP (or Static)<br>
+MTU: 1500<br>
+DNS: Automatic (or specify custom DNS servers)</code>
+                    </div>
+
+                    <h3>LAN Interface</h3>
+                    <p>The LAN (Local Area Network) interface connects to your internal network:</p>
+                    <div class="code-block">
+                        <code># Example LAN configuration<br>
+Interface: eth1<br>
+Type: Static<br>
+IP Address: 192.168.1.1<br>
+Subnet Mask: 255.255.255.0<br>
+DHCP Server: Enabled<br>
+DHCP Range: 192.168.1.100 - 192.168.1.200</code>
+                    </div>
+
+                    <h2 id="dhcp">DHCP Server</h2>
+                    <p>Configure the DHCP server under <strong>Services &gt; DHCP Server</strong>:</p>
+
+                    <h3>Basic Settings</h3>
+                    <ul>
+                        <li><strong>Enable DHCP:</strong> Yes</li>
+                        <li><strong>Range:</strong> 192.168.1.100 - 192.168.1.200</li>
+                        <li><strong>Lease Time:</strong> 86400 seconds (24 hours)</li>
+                        <li><strong>DNS Servers:</strong> 192.168.1.1 (firewall) or external DNS</li>
+                        <li><strong>Gateway:</strong> 192.168.1.1</li>
+                    </ul>
+
+                    <h3>Static Leases</h3>
+                    <p>Reserve specific IP addresses for devices:</p>
+                    <div class="code-block">
+                        <code># Add static DHCP lease<br>
+MAC Address: AA:BB:CC:DD:EE:FF<br>
+IP Address: 192.168.1.50<br>
+Hostname: server01</code>
+                    </div>
+
+                    <h2 id="dns">DNS Configuration</h2>
+                    <p>Configure DNS settings under <strong>Services &gt; DNS</strong>:</p>
+
+                    <h3>DNS Forwarder</h3>
+                    <ul>
+                        <li><strong>Enable DNS Forwarder:</strong> Yes</li>
+                        <li><strong>Upstream DNS:</strong> 1.1.1.1, 8.8.8.8</li>
+                        <li><strong>Enable DNSSEC:</strong> Yes (recommended)</li>
+                        <li><strong>Cache Size:</strong> 10000 entries</li>
+                    </ul>
+
+                    <h3>Custom DNS Entries</h3>
+                    <div class="code-block">
+                        <code># Add custom DNS entry<br>
+Hostname: router.local<br>
+IP Address: 192.168.1.1</code>
+                    </div>
+
+                    <h2 id="nat">NAT Configuration</h2>
+                    <p>Network Address Translation is configured under <strong>Firewall &gt; NAT</strong>:</p>
+
+                    <h3>Outbound NAT</h3>
+                    <p>Enable internet access for LAN devices:</p>
+                    <div class="code-block">
+                        <code># Automatic outbound NAT (recommended)<br>
+Mode: Automatic<br>
+Interface: WAN<br>
+Source: LAN network (192.168.1.0/24)</code>
+                    </div>
+
+                    <h3>Port Forwarding</h3>
+                    <p>Forward external ports to internal servers:</p>
+                    <div class="code-block">
+                        <code># Example: Forward HTTP to web server<br>
+Interface: WAN<br>
+Protocol: TCP<br>
+External Port: 80<br>
+Internal IP: 192.168.1.100<br>
+Internal Port: 80<br>
+Description: Web Server</code>
+                    </div>
+
+                    <h2 id="cli">CLI Configuration</h2>
+                    <p>Advanced users can use the command-line interface:</p>
+
+                    <h3>Accessing the CLI</h3>
+                    <div class="code-block">
+                        <code># SSH to the firewall<br>
+ssh admin@@&lt;firewall-ip&gt;<br>
+<br>
+# Or use local console<br>
+monolith-cli</code>
+                    </div>
+
+                    <h3>Common CLI Commands</h3>
+                    <div class="code-block">
+                        <code># Show interface status<br>
+monolith-cli interface list<br>
+<br>
+# Configure interface<br>
+monolith-cli interface set eth0 --ip 192.168.1.1/24<br>
+<br>
+# Show firewall rules<br>
+monolith-cli firewall rules list<br>
+<br>
+# Backup configuration<br>
+monolith-cli config backup /path/to/backup.xml<br>
+<br>
+# Restore configuration<br>
+monolith-cli config restore /path/to/backup.xml</code>
+                    </div>
+
+                    <h2 id="backup">Backup and Restore</h2>
+                    <p>Always backup your configuration before making major changes:</p>
+
+                    <h3>Web Interface Backup</h3>
+                    <ol>
+                        <li>Navigate to <strong>Diagnostics &gt; Backup & Restore</strong></li>
+                        <li>Click <strong>Download Configuration</strong></li>
+                        <li>Save the XML file to a safe location</li>
+                    </ol>
+
+                    <h3>Restore Configuration</h3>
+                    <ol>
+                        <li>Navigate to <strong>Diagnostics &gt; Backup & Restore</strong></li>
+                        <li>Click <strong>Choose File</strong> and select your backup</li>
+                        <li>Click <strong>Restore Configuration</strong></li>
+                        <li>The firewall will reboot with the restored configuration</li>
+                    </ol>
+
+                    <h2 id="updates">System Updates</h2>
+                    <p>Keep your system secure with regular updates:</p>
+
+                    <h3>Check for Updates</h3>
+                    <div class="code-block">
+                        <code># Via CLI<br>
+monolith-cli system update check<br>
+<br>
+# Apply updates<br>
+monolith-cli system update install</code>
+                    </div>
+
+                    <h3>Web Interface Updates</h3>
+                    <p>Navigate to <strong>System &gt; Updates</strong> to check for and install updates.</p>
+
+                    <div class="alert alert-info mt-4">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Next Steps:</strong> Now that your basic configuration is complete, learn about
+                        <a asp-page="/Docs/Firewall" style="color: var(--primary-color); font-weight: bold;">setting up firewall rules</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

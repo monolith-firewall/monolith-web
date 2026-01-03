@@ -1,0 +1,201 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <i class="fas fa-shield-alt hero-shield"></i>
+            <h1>Monolith Firewall</h1>
+            <p class="lead">Next-generation open-source firewall built on .NET 10 and Debian 13</p>
+            <div class="mt-4">
+                <a asp-page="/Download" class="btn btn-primary btn-lg me-3">
+                    <i class="fas fa-download"></i> Download Now
+                </a>
+                <a asp-page="/Docs/Index" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-book"></i> Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Why Monolith Firewall?</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-code feature-icon"></i>
+                    <h3>Built on .NET 10</h3>
+                    <p>Leverages the latest .NET 10 framework for high performance, modern APIs, and cross-platform compatibility.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-lock feature-icon"></i>
+                    <h3>Advanced Security</h3>
+                    <p>Enterprise-grade security features including deep packet inspection, intrusion detection, and real-time threat monitoring.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fab fa-osi feature-icon"></i>
+                    <h3>100% Open Source</h3>
+                    <p>Fully open-source under MIT license. Transparent, auditable, and community-driven development.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-gauge-high feature-icon"></i>
+                    <h3>High Performance</h3>
+                    <p>Optimized for speed with minimal resource usage. Handles thousands of concurrent connections effortlessly.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-cogs feature-icon"></i>
+                    <h3>Easy Configuration</h3>
+                    <p>Intuitive web interface and CLI tools for seamless setup and management. No complex configurations required.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <h3>Real-time Analytics</h3>
+                    <p>Comprehensive monitoring dashboards with real-time traffic analysis and detailed logging capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--dark-bg-secondary);">
+    <div class="container">
+        <h2 class="section-title">Key Features</h2>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h3 style="color: var(--primary-color); margin-bottom: 2rem;">Powerful Protection</h3>
+                <ul style="color: var(--text-secondary); font-size: 1.1rem; line-height: 2;">
+                    <li><i class="fas fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> Stateful packet filtering</li>
+                    <li><i class="fas fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> Network Address Translation (NAT)</li>
+                    <li><i class="fas fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> VPN support (OpenVPN, WireGuard)</li>
+                    <li><i class="fas fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> Intrusion Detection System (IDS)</li>
+                    <li><i class="fas fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> Traffic shaping and QoS</li>
+                    <li><i class="fas fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> Multi-WAN support</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card" style="background: var(--dark-bg-tertiary);">
+                    <i class="fas fa-server feature-icon"></i>
+                    <h3>System Requirements</h3>
+                    <hr style="border-color: rgba(0, 212, 255, 0.2);">
+                    <div style="text-align: left;">
+                        <p><strong style="color: var(--primary-color);">Minimum:</strong></p>
+                        <ul style="color: var(--text-secondary);">
+                            <li>CPU: 64-bit x86 or ARM64 processor</li>
+                            <li>RAM: 1 GB (2 GB recommended)</li>
+                            <li>Storage: 8 GB available space</li>
+                            <li>Network: 2+ network interfaces</li>
+                        </ul>
+                        <p class="mt-3"><strong style="color: var(--primary-color);">Recommended:</strong></p>
+                        <ul style="color: var(--text-secondary);">
+                            <li>CPU: Multi-core 64-bit processor</li>
+                            <li>RAM: 4 GB or more</li>
+                            <li>Storage: 16 GB SSD</li>
+                            <li>Network: Gigabit network interfaces</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Quick Start</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">1</div>
+                    <h3>Download ISO</h3>
+                    <p>Download the latest ISO image for your architecture (AMD64 or ARM64).</p>
+                    <a asp-page="/Download" class="btn btn-outline-primary mt-3">Get Started</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">2</div>
+                    <h3>Install</h3>
+                    <p>Boot from the ISO and follow the guided installation wizard.</p>
+                    <a asp-page="/Docs/Installation" class="btn btn-outline-primary mt-3">Learn More</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">3</div>
+                    <h3>Configure</h3>
+                    <p>Access the web interface and configure your firewall rules.</p>
+                    <a asp-page="/Docs/Configuration" class="btn btn-outline-primary mt-3">View Docs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--dark-bg-secondary);">
+    <div class="container text-center">
+        <h2 class="section-title">Built on Solid Foundations</h2>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-3 col-6 mb-4">
+                <div style="font-size: 4rem; color: var(--primary-color);">
+                    <i class="fab fa-linux"></i>
+                </div>
+                <h5 class="mt-3">Debian 13</h5>
+                <p style="color: var(--text-secondary);">Stable & Secure</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div style="font-size: 4rem; color: var(--primary-color);">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h5 class="mt-3">.NET 10</h5>
+                <p style="color: var(--text-secondary);">Modern Framework</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div style="font-size: 4rem; color: var(--primary-color);">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <h5 class="mt-3">Netfilter</h5>
+                <p style="color: var(--text-secondary);">Kernel-level Security</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div style="font-size: 4rem; color: var(--primary-color);">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <h5 class="mt-3">Open Source</h5>
+                <p style="color: var(--text-secondary);">MIT License</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container text-center">
+        <h2 class="section-title">Ready to Get Started?</h2>
+        <p class="lead mb-4" style="color: var(--text-secondary);">
+            Join the community and start securing your network today.
+        </p>
+        <a asp-page="/Download" class="btn btn-primary btn-lg me-3">
+            <i class="fas fa-download"></i> Download Monolith Firewall
+        </a>
+        <a href="https://github.com" target="_blank" class="btn btn-outline-primary btn-lg">
+            <i class="fab fa-github"></i> View on GitHub
+        </a>
+    </div>
+</section>
